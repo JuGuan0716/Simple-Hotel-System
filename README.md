@@ -138,6 +138,5 @@ Or press **F5** in Visual Studio.
 
 ## 👤 Author
 
-Developed by **[Your Name]**  
-📧 your.email@gmail.com  
-🔗 [LinkedIn](https://linkedin.com/in/yourprofile) | [GitHub](https://github.com/yourusername)
+Developed by **JuGuan0716**  
+
