@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model AdminInfo
+<form method="post" asp-controller="Admin" asp-action="AdminLogin">
+    <div class="form-floating mb-3">
+        <input asp-for="Name" class="form-control" placeholder="Admin" required>
+        <label>Name</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input asp-for="Password" type="password" class="form-control" placeholder="Password" required>
+        <label>Password</label>
+    </div> 
+
+    <button type="submit" class="btn btn-primary w-100">Login</button>
+    @*<button type="reset">Clear</button>*@
+
+</form>
+
+

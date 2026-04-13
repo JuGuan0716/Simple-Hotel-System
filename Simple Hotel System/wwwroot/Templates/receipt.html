@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Receipt - {{BookingId}}</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            width: 800px;
+            margin: 30px auto;
+        }
+
+        .header{
+            text-align: center;
+        }
+
+        hr {
+            margin: 20px 0;
+        }
+
+        .horizontal {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .horizontal > div {
+        flex: 1;
+        }
+
+        .horizontal > div:last-child {
+        text-align: right;
+        }
+
+
+        .footer{
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+
+        @media print {
+            body {
+                width: auto;
+                margin: 0;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h2><b>Simple Hotel System</b></h2>
+            <p>Bandar Sri Damansara, Kuala Lumpur</p>
+            <p>Email: support@simplehotel.com | Phone: +603-6276 4748</p>
+        </div>
+
+        <hr>
+
+        <div class="horizontal">
+            <div>
+                <h4><b>Booking Details</b></h4>
+                <p><strong>Booking ID:</strong> {{BookingId}}</p>
+                <p><strong>Guest ID:</strong> {{GuestId}}</p>
+                <p><strong>Guest Name:</strong> {{GuestName}}</p>
+                <p><strong>Room ID:</strong> {{BookingRoomId}}</p>
+                <p><strong>Room Type:</strong> {{RoomType}}</p>
+            </div>
+            <div>
+                <h4><b>Stay Details</b></h4>
+                <p><strong>Check-in:</strong> {{CheckIn}}</p>
+                <p><strong>Check-out:</strong> {{CheckOut}}</p>
+                <p><strong>Nights:</strong> {{Nights}}</p>
+            </div>
+        </div>
+
+        <hr>
+
+
+        <div class="horizontal">
+            <p>Room Charge ({{Nights}} Nights) | RM {{RoomPrice}} × {{Nights}}</p>
+            <p>RM {{TotalPrice}}</p>
+        </div>
+
+        <hr>
+
+        <div class="total-row">
+            <h2>Total: RM {{TotalPrice}}</h2>
+            <p><strong>Confirmed</strong></p>
+        </div>
+
+        <hr>
+
+        <div class="footer">
+            <p>Thank you for choosing us.</p>
+            <p>Please present this receipt during check-in.</p>
+        </div>
+
+
+    </div>
+
+    <script>
+    window.onload = function () {
+        window.print();
+        window.onafterprint = function () {
+            window.close();
+        }
+    }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+﻿@using System.Text.Json
+
+<script>
+    var rooms = @Html.Raw(JsonSerializer.Serialize(ViewBag.AllRooms ?? new object()));
+    console.log("Rooms from ViewBag:", rooms);
+</script>
+
+@model RoomInfo
+@if (Model == null)
+{
+    <div class="alert alert-danger">
+        Room not found.
+    </div>
+}
+else
+{
+    <div class="container mt-5">
+        <div class="card shadow-sm">
+            <div class="row g-0">
+
+                <!-- LEFT: ROOM IMAGE -->
+                <div class="col-md-5 h-100">
+                    <div class="hotel-image-wrapper h-100 position-relative">
+                        <img id = "roomImage" src="@(!string.IsNullOrEmpty(Model.PicUrl)? Model.PicUrl: "/images/no-image.png")"
+                             class="hotel-image"
+                             alt="@Model.Name" />
+
+                        <div class="room-overlay p-3 text-white">
+                            <h5 id="roomName">@Model.Name</h5>
+                            <span id="roomType">@Model.Type</span>
+                            <div id="roomPrice">RM @Model.Price / Night</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: INPUT FORM -->
+                <div class="col-md-7">
+                    <div class="card-body">
+
+                        <h4 class="mb-4">Book This Room</h4>                      
+
+                        <form method="post" asp-action="Reserve" asp-controller="Booking">
+                            <input type="hidden" id="hiddenRoomId" name="RoomId" value="@Model.Id" />
+
+                            <!--price range-->
+                            <div class="row mb-3">
+                                <div class="col-md-5">
+                                    <div class="input-group">
+                                        <span class="input-group-text">RM</span>
+                                        <input type="number"
+                                               id="priceMin"
+                                               class="form-control"
+                                               placeholder="Min Price">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 text-center align-self-center">
+                                    <strong>-</strong>
+                                </div>
+
+                                <div class="col-md-5">
+                                    <div class="input-group">
+                                        <span class="input-group-text">RM</span>
+                                        <input type="number"
+                                               id="priceMax"
+                                               class="form-control"
+                                               placeholder="Max Price">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ROOM TYPE DROPDOWN -->
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="roomTypeSelect" asp-for="Type">
+                                    <option value="">Select Room Type</option>
+
+                                    @if (ViewBag.RoomTypes is IEnumerable<string> roomTypes)
+                                    {
+                                        foreach (var type in roomTypes)
+                                        {
+                                            <option value="@type">@type</option>
+                                        }
+                                    }
+
+                                </select>
+                                <label>Room Type</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="roomNameSelect">
+                                    <option value="">Select Room Name</option>
+                                </select>
+                                <label>Room Name</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input name="CheckIn" type="date" class="form-control" required />
+                                <label>Check-in</label>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input name="CheckOut" type="date" class="form-control" required />
+                                <label>Check-out</label>
+                            </div>                       
+
+                            <button type="submit" class="btn btn-primary">
+                                Reserve
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .hotel-image-wrapper {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .hotel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .room-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+        }
+    </style>
+
+    <script src="~/js/showroom.js"></script>
+
+}

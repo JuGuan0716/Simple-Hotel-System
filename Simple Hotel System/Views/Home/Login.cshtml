@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model GuestInfo
+<form method="post" asp-controller="Guest" asp-action="GuestLogin">
+    <div class="form-floating mb-3">
+        <input asp-for="Email" type="email" class="form-control" placeholder="name@example.com" required>
+        <label>Email address</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input asp-for="Password" type="password" class="form-control" placeholder="Password" required>
+        <label>Password</label>
+    </div> 
+
+    <button type="reset" class="btn btn-secondary">Clear</button>
+    <button type="submit" class="btn btn-primary">Login</button>
+
+
+    @* <div class="row mb-1">
+        <div class="col-12">
+            <label class="col-sm-2 col-form-label fw-bold">Email</label>
+            <div class="col-sm-4">
+                <input asp-for="Email" type="email" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-4 d-flex justify-content-center">
+            <button type="submit" class="btn btn-sm btn-primary">Login</button>
+        </div>
+    </div> *@
+</form>
+
+

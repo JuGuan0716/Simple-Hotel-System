@@ -1,0 +1,50 @@
+﻿@model List<Simple_Hotel_System.Models.WeatherForecastInfo>
+
+<div class="text-end mb-2">
+    <button class="btn btn-sm btn-primary" onclick="refreshWeather()">
+        <i class="fas fa-rotate"></i> Refresh
+    </button>
+</div>
+
+<div id="WeatherContainer">
+    @await Html.PartialAsync("_WeatherPartial", Model)
+</div>
+
+
+<style>
+    .temp-value:hover {
+        color: #0d6efd;
+        transition: 0.3s;
+    }
+</style>
+
+
+<script>
+    function toggleTemp(element) {
+
+        var c = element.getAttribute("data-c");
+        var f = element.getAttribute("data-f");
+
+        if (element.innerText.includes("°C")) {
+            element.innerText = f + " °F";
+        } else {
+            element.innerText = c + " °C";
+        }
+    }
+
+    function refreshWeather() {
+        var container = document.getElementById("WeatherContainer");
+
+        container.innerHTML = "Loading...";
+
+        fetch('/Weather/Refresh')
+            .then(response => response.text())
+            .then(html => {
+                container.innerHTML = html;
+            })
+            .catch(error=> {
+                container.innerHTML = "Error loading weather data.";
+                console.error('Error fetching weather data:', error);
+            });
+    }
+</script>

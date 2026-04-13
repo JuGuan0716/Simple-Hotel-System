@@ -1,0 +1,56 @@
+﻿@model RoomInfo
+
+<div class="card border-primary mb-4" style="max-width: 700px;">
+    <div class="card-header fw-bold">
+        Room Information
+    </div>
+
+    <div class="card-body">
+        <form method="post" asp-action="SetRoom" enctype="multipart/form-data">
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label fw-bold">Room Name</label>
+                <div class="col-sm-9">
+                    <input asp-for="Name" class="form-control" placeholder="Room Name" required/>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label fw-bold">Type</label>
+                <div class="col-sm-9">
+                    <input asp-for="Type" class="form-control" placeholder="Type of Room" required/>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label fw-bold">Status</label>
+                <div class="col-sm-9">
+                    <select asp-for="Status" class="form-select" required>
+                        <option value="Available">Available</option>
+                        <option value="Not Available">Not Available</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-3 col-form-label fw-bold">Price</label>
+                <div class="col-sm-9">
+                    <input asp-for="Price" type="number" step="0.01" class="form-control" placeholder="RM 0.00" />
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <label class="col-sm-3 col-form-label fw-bold">Room Image</label>
+                <div class="col-sm-9">
+                    <input type="file" name="file" class="form-control" accept="image/png, image/jpeg, image/webp" required/>
+                </div>
+            </div>
+
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                <button type="reset" class="btn btn-secondary btn-sm">Clear</button>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+﻿@model ReceiptInfo
+
+@if (Model == null)
+{
+    <h1>Model is NULL</h1>
+}
+else if (Model.Booking == null)
+{
+    <h1>Booking is NULL</h1>
+}
+else if (Model.Room == null)
+{
+    <h1>Room is NULL</h1>
+}
+
+
+<div class="container mt-5 mb-5">
+    <div class="card shadow p-4">
+
+        <!-- HOTEL HEADER -->
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Simple Hotel System</h2>
+            <p class="mb-0">Bandar Sri Damansara, Kuala Lumpur</p>
+            <p>Email: support@simplehotel.com | Phone: +603-6276 4748</p>
+        </div>
+
+        <hr />
+
+        <!-- BOOKING INFO -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h5>Booking Details</h5>
+                <p><strong>Booking ID:</strong> @Model.Booking.Id</p>
+                <p><strong>Guest ID:</strong> @Model.Guest.Id</p>
+                <p><strong>Guest Name:</strong> @Model.Guest.Name</p>
+                <p><strong>Room ID:</strong> @Model.Booking.RoomId</p>
+                <p><strong>Room Type:</strong> @Model.Room.Type</p>
+            </div>
+
+            <div class="col-md-6 text-md-end">
+                <h5>Stay Details</h5>
+                <p><strong>Check-in:</strong> @Model.Booking.CheckIn.ToString("dd MMM yyyy")</p>
+                <p><strong>Check-out:</strong> @Model.Booking.CheckOut.ToString("dd MMM yyyy")</p>
+                <p><strong>Nights:</strong> @Model.Booking.Nights</p>
+            </div>
+        </div>
+
+        <hr />
+
+        <!-- PAYMENT SUMMARY -->
+        <div class="row">
+            <div class="col-md-8">
+                <p>Room Charge (@Model.Booking.Nights nights) | RM @Model.Room.Price * @Model.Booking.Nights nights </p>
+            </div>
+            <div class="col-md-4 text-end">
+                <p>RM @Model.Booking.TotalPrice</p>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="text-end">
+            <h4>Total: RM @Model.Booking.TotalPrice</h4>
+            <span class="badge bg-success">Confirmed</span>
+        </div>
+
+        <hr />
+
+        <div class="text-center mt-4">
+            <p class="mb-0">Thank you for choosing us.</p>
+            <small>Please present this receipt during check-in.</small>
+        </div>
+
+        <div class="d-flex justify-content-between mt-3">
+
+            <!-- LEFT -->
+            <a asp-action="PrintReceipt" asp-controller="Booking" asp-route-id="@Model.Booking.Id"
+                target="_blank" class="btn btn-primary">
+                Print Receipt
+            </a>
+
+            <!-- RIGHT -->
+            <a asp-controller="Booking"
+               asp-action="CheckOut"
+               asp-route-id="@Model.Booking.Id"
+               class="btn btn-success">
+                Proceed to Checkout
+            </a>
+
+        </div>
+    </div>
+</div>

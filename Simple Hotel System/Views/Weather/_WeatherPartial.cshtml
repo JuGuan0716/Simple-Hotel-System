@@ -1,0 +1,57 @@
+﻿@model List<Simple_Hotel_System.Models.WeatherForecastInfo>
+
+@if (Model != null && Model.Any())
+{
+    <div class="d-flex justify-content-around align-items-center bg-light rounded-4 shadow p-4"
+         style="height:230px">
+
+        @foreach (var item in Model)
+        {
+            <div class="text-center">
+                <p class="fw-bold temp-value"
+                   data-c="@item.TemperatureC"
+                   data-f="@item.TemperatureF"
+                   onclick="toggleTemp(this)"
+                   style="cursor:pointer;">
+                    @item.TemperatureC °C
+                </p>
+
+                @{
+                    string iconClass = "";
+                    //string iconColor = "";
+
+                    if(item.TemperatureC <= 10)
+                    {
+                        iconClass = "fa-snowflake";
+                        //iconColor = "text-info";
+                    }
+                    else if (item.TemperatureC <= 25)
+                    {
+                        iconClass = "fa-cloud";
+                        //iconColor = "text-secondary";
+                    }
+                    else if (item.TemperatureC <= 34)
+                    {
+                        iconClass = "fa-cloud-sun";
+                        //iconColor = "text-warning";
+                    }
+                    else
+                    {
+                        iconClass = "fa-sun";
+                        //iconColor = "text-danger";
+                    }
+                    
+                }
+
+                @* <i class="fas @iconClass fa-2x mb-2 @iconColor"></i> *@
+                <i class="fas @iconClass fa-2x mb-2 text-secondary"></i>
+                <p class="fw-bold mb-0">@item.Date.ToString("dd/MM")</p>
+                <p class="text-muted">@item.Summary</p>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No weather data available...</p>
+}

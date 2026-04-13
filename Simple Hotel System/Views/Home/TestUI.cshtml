@@ -1,0 +1,37 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model AdminInfo
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<form method="post" asp-action="GetEncryption">
+
+    <div class="row mb-3">
+        <label for="" class="col-sm-2 col-form-label fw-bold">Encrypt Word:</label>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <input type="text" class="form-control" asp-for="Name" />
+                <button type="button" id="btnOnclick" class="btn btn-secondary" ><i class="bi bi-search"></i></button>
+                <button type="submit" class="btn btn-secondary"><i class="bi bi-search"></i></button>
+            </div>
+        </div>
+
+        
+        <div class="col-sm-2">
+            <input type="text" id="encryptedValue" class="form-control-plaintext text-danger fw-bold" readonly />
+        </div>
+        <label for="" class="col-sm-2 col-form-label fw-bold">Is Standard?</label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control-plaintext" readonly />
+        </div>
+    </div>
+
+
+
+
+
+</form>
+
